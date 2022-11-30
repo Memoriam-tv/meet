@@ -1,0 +1,42 @@
+# Load .env
+<%
+require "bundler/inline"
+gemfile do
+  source "https://rubygems.org"
+  gem "dotenv"
+end
+Dotenv.load
+%>
+# Required minimum dip version
+version: "7.2"
+
+environment:
+  NODE_ENV: development
+
+compose:
+  files:
+    - docker-compose.yml
+
+interaction:
+  npm:
+    description: Open a Bash shell within container
+    service: meet
+    command: npm
+
+  sh:
+    description: Run an arbitrary script within a container (or open a shell without deps)
+    service: meet
+    command: /bin/bash
+    compose_run_options: [no-deps]
+
+provision:
+  # Remove old containers and volumes.
+  - dip compose down --volumes --remove-orphans
+  - docker volume create <%= ENV.fetch("COMPOSE_PROJECT_NAME", "meet") %>-history
+
+  # Create mount points for specific directories. By creating them as current user the have correct user id and group id.
+  - mkdir -p tmp
+
+  # Build the development container (based on .devcontainer/Dockerfile)
+  - dip compose build
+  - dip npm ci install

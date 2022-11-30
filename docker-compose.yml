@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  meet:
+    build: .
+    environment:
+      EDITOR: vi
+      GITHUB_TOKEN: ${GITHUB_TOKEN:?set_a_default_in_your_dot_env}
+      HISTFILE: /usr/local/hist/.bash_history
+      TZ: ${TZ-Europe/Amsterdam}
+      YARN_CACHE_FOLDER: /app/node_modules/.yarn-cache
+
+    tmpfs:
+      - /tmp
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app:delegated
+      - node_modules:/app/node_modules:delegated,rw
+      - $HOME/.ssl:/app/ssl:cached,ro
+      - $PWD/.git-credentials:/root/.git-credentials:cached,ro
+      - history:/usr/local/hist
+    ports:
+      - 3000:3000
+    command: npm run dev
+
+volumes:
+  node_modules:
+  history:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-meet}-history
