@@ -3,7 +3,7 @@ import Image from "next/image";
 import { AiFillGithub } from "react-icons/ai";
 import { Flex, Spacer } from "@chakra-ui/react";
 
-import muxLogo from "../public/mux-logo.svg";
+import MemoriamTVLogo from "../public/memoriamtv-logo.svg";
 
 export default function Header(): JSX.Element {
   return (
@@ -17,7 +17,7 @@ export default function Header(): JSX.Element {
     >
       <Flex alignItems="center" padding="10px" width="290px">
         <a
-          href="https://www.mux.com/real-time-video"
+          href="https://www.memoriam.tv"
           target="_blank"
           rel="noreferrer"
         >
@@ -25,21 +25,12 @@ export default function Header(): JSX.Element {
             priority
             alt="logo"
             width={150}
-            src={muxLogo}
+            src={MemoriamTVLogo}
             style={{ height: "auto" }}
           />
         </a>
       </Flex>
       <Spacer />
-      <Flex alignItems="center" padding="10px">
-        <a
-          href="https://github.com/muxinc/meet"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <AiFillGithub color="white" size="40px" />
-        </a>
-      </Flex>
     </Flex>
   );
 }

@@ -161,7 +161,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let props: Record<string, any> = {
     heliosURL: MUX_SPACES_HELIOS_URL,
     spaceBackendURL: MUX_SPACES_BACKEND_URL,
-    title: passthrough ? `${passthrough} | Mux Meet` : "Mux Meet Space",
+    title: passthrough ? `${passthrough} | Memoriam.tv Meet` : "Memoriam.tv Meet Space",
   };
 
   if (

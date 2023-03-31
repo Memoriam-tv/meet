@@ -25,7 +25,7 @@ import { useUserMedia } from "hooks/useUserMedia";
 import MicrophoneButton from "components/controls/buttons/MicrophoneButton";
 import CameraButton from "components/controls/buttons/CameraButton";
 
-import muxLogo from "../public/mux-logo.svg";
+import MemoriamTVLogo from "../public/memoriamtv-logo.svg";
 
 interface Props {
   onInteraction: () => void;
@@ -93,7 +93,7 @@ export default function UserInteractionPrompt({
         priority
         alt="logo"
         width={300}
-        src={muxLogo}
+        src={MemoriamTVLogo}
         style={{ zIndex: 0, height: "auto" }}
       />
       <form onSubmit={handleSubmit}>
